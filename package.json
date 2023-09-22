@@ -6,12 +6,9 @@
   "scripts": {},
   "workspaces": [
     "./server",
-    "./client",
-    "./packages"
+    "./client"
   ],
   "dependencies": {
-    "@ts-rest/core": "^3.30.2",
-    "@ts-rest/nest": "^3.30.2",
     "lodash": "^4.17.21",
     "zod": "^3.22.2"
   },
