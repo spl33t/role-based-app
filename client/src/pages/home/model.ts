@@ -1,10 +1,7 @@
 import { createEvent, createStore, sample } from "effector";
 import { routes } from "@/shared/routing";
-import { createQuery, createHeadlessQuery, createJsonQuery, } from "@farfetched/core";
-import { ClientInferRequest, ClientInferResponseBody, ServerInferRequest, ServerInferResponses } from "@ts-rest/core";
-import { usersContract } from "@packages/contracts";
-import { client2 } from "@/shared/api";
-import { users } from "@/shared/api/requests/users";
+import { createQuery } from "@farfetched/core";
+import { apiClient } from "@/shared/api";
 
 const $$currentRoute = routes.home.route
 
@@ -26,40 +23,22 @@ sample({
 })
 
 
-export const $$getUserQuery = createQuery({
-  handler: async () => {
-    console.log("start get user")
-
-    const user = await client2.getUser({ params: { id: "2" } })
-
-    console.log("result get user", user)
-  }
-})
-
-type User = ServerInferRequest<typeof usersContract.getUser>;
-type UserReq = ServerInferRequest<typeof usersContract.getUser>
-type UserRes = ClientInferResponseBody<typeof usersContract.getUser>;
-const getUserReqArgs: UserReq = { params: { id: "1" } }
-const test: UserRes = {}
-
-const sas = async (params: { ar: string }) => {
-  // TODO: write handler here
-  return null;
-}
-
-
-export const $$getUserQuery3 = createQuery({ handler: client2.getUser })
-
-$$getUserQuery3.$data.watch(s=> s)
-
-//console.log(usersContract.getUser)
-
-//$$getUserQuery.$data.watch(s => console.log(s))
+export const $$getUserQuery = createQuery({ handler: apiClient.getUser })
+export const $$createUserQuery = createQuery({ handler: apiClient.createUser })
 
 sample({
   clock: [$$currentRoute.opened],
   fn: () => {
-    return { params: { id: "2" } }
+    return { params: { id: "6" } }
   },
-  target: $$getUserQuery3.start
+  target: $$getUserQuery.start
 })
+
+sample({
+  clock: [$$currentRoute.opened],
+  fn: () => {
+    return { body: { id: "2", name: "abuuuuuuuuu" } }
+  },
+  target: $$createUserQuery.start
+})
+

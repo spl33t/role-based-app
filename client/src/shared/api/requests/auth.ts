@@ -8,14 +8,14 @@ export const auth = {
     return axiosRequest<UserWithTokensDto>({
       url: `${baseUrl}/registration`,
       method: "post",
-      data: args.dto
+      body: args.dto
     }).then((response) => response)
   },
   login: (params: LoginDto) => {
     return axiosRequest<UserWithTokensDto>({
       url: `${baseUrl}/login`,
       method: "post",
-      data: params,
+      body: params,
     }).then((response) => response)
   },
   refreshSession: () => {

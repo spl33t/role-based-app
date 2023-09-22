@@ -8,6 +8,7 @@ export const HomePage = () => {
   return (
     <div>
       <h1>Welcome to effector-role-based-routing [DEMO]</h1>
+      <div>User name: {user?.name}</div>
       <button onClick={() => increment()}>Клик</button>
       {count}
     </div>

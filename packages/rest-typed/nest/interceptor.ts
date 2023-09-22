@@ -7,12 +7,10 @@ import {
 import { map, Observable } from 'rxjs';
 import { Reflector } from '@nestjs/core';
 import {
-  TsRestAppRouteMetadataKey, ValidateResponsesSymbol,
-
+  TsRestAppRouteMetadataKey,
 } from './constants';
 import type { Response } from 'express-serve-static-core';
-import { Endpoint } from "@packages/rest-typed/lib";
-import { method } from "lodash";
+import { Endpoint } from "@packages/rest-typed";
 
 @Injectable()
 export class TsRestInterceptor implements NestInterceptor {
