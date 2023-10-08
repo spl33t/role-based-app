@@ -4,7 +4,7 @@ import { notification } from "antd"
 import { LOCAL_STORAGE_KEYS } from "../config/local-storage"
 import { auth } from "./requests/auth"
 import { users } from "./requests/users"
-import { userController } from "@packages/rest-typed/user-controller";
+import { userController } from "@packages/contracts/user.controller";
 import { initClient } from "@packages/rest-typed";
 
 type Method = "get" | "delete" | "post" | "put"
